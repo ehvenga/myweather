@@ -1,20 +1,19 @@
 <link rel="stylesheet" href="./css/home.css">
-<script src="./js/home.js" defer></script>
 <script src="https://kit.fontawesome.com/610450b44d.js" crossorigin="anonymous"></script>
 
 
 <div class="container d-flex align-items-center justify-content-center flex-column">
     <div class="card col-12 col-md-10 col-lg-8 col-xl-6 p-4">
         <div class="card-body">
-            <form class="row g-2 mb-3">
+            <form class="row g-2 mb-3" action="/" method="POST">
                 <div class="col-10">
-                    <input type="text" class="form-control rounded-pill" placeholder="Search" aria-label="Search">
+                    <input type="text" class="form-control rounded-pill" placeholder="Search" aria-label="Search" name="searchCity">
                 </div>
                 <div class="col-2">
-                    <button class="btn btn-primary col-12 rounded-pill" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary col-12 rounded-pill" type="submit"><i class="fas fa-search" id="searchBtn"></i></button>
                 </div>
             </form>
-            <p class="fs-2 mb-3">Weather in City</p>
+            <p class="fs-2 mb-3">Weather in</p>
             <p class="fs-2 mb-3">Temperature</p>
             <p class="fs-4 mb-2">Weather details</p>
             <p class="fs-4 mb-1">Weather details</p>
@@ -22,6 +21,6 @@
         </div>
     </div>
     <div>
-        <p class="fw-light m-2">myWeather by <a class="text-decoration-none" href="#">@ehvenga</a> </p>
+        <p class="fw-light m-2">myWeather by <a class="text-decoration-none" href="https://www.linkedin.com/in/ehvenga/">@ehvenga</a> </p>
     </div>
 </div>
