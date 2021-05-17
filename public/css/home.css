@@ -1,0 +1,11 @@
+:root{
+    font-size: 18px;
+}
+
+.container {
+    height: 100vh;
+}
+
+.card {
+    border-radius: 2rem;
+}
