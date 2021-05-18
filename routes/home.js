@@ -32,6 +32,11 @@ async function fetchWeather(city) {
     return data
 }
 
+// function fetchGeoLocation() {
+//     let location = navigator.geolocation.getCurrentPosition(success, error)
+//     console.log(location)
+// }
+
 router.get('/', async (req, res) => {
     weather_data = await fetchWeather("London")
     res.render('home', weather_data)
@@ -44,6 +49,13 @@ router.post('/', async (req, res) => {
     console.log(weather_data)
     res.render('home', weather_data)
 
+})
+
+router.post('/geolocation', async (req, res) => {
+    // fetchGeoLocation()
+    city = "Denver"
+    weather_data = await fetchWeather(city)
+    res.render('home', weather_data)
 })
 
 
