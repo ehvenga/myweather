@@ -13,11 +13,19 @@
                     <button class="btn btn-primary col-12 rounded-pill" type="submit"><i class="fas fa-search" id="searchBtn"></i></button>
                 </div>
             </form>
-            <p class="fs-2 mb-3">Weather in</p>
-            <p class="fs-2 mb-3">Temperature</p>
-            <p class="fs-4 mb-2">Weather details</p>
-            <p class="fs-4 mb-1">Weather details</p>
-            <p class="fs-4 mb-1">Weather details</p>
+            <div class="content px-2">
+                <p class="fs-2 mb-3">Weather in {{city}}</p>
+                <p class="fs-2 mb-0">{{temp}}°C</p>
+                <p class="fs-5 mb-3">Feels like {{feels_like}}°C</p>
+                <div class="d-flex align-items-center mb-2">
+                    <img src="https://openweathermap.org/img/wn/{{icon}}.png" alt="icon">
+                    <p class="fs-5 mb-0 mx-2">{{description}}</p>
+                </div>
+                <p class="fs-5 mb-0">Maximum Temperature: {{temp_max}}°C</p>
+                <p class="fs-5 mb-0">Minimum Temperature: {{temp_min}}°C</p>
+                <p class="fs-5 mb-0">Humidity: {{humidity}}%</p>
+                <p class="fs-5 mb-0">Wind Speed: {{wind}} km/h</p>
+            </div>
         </div>
     </div>
     <div>

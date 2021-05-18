@@ -2,10 +2,20 @@
     font-size: 18px;
 }
 
+body{
+    background-color: black;
+}
+
 .container {
     height: 100vh;
 }
 
 .card {
     border-radius: 2rem;
+    background-color: rgb(15, 15, 15);
+    color: white;
+}
+
+p {
+    opacity: 100%;
 }
