@@ -15,8 +15,7 @@ function capitalize(input) {
     return CapitalizedWords.join(' ');  
 }  
 
-async function fetchWeather(city) {
-    weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+function convertData(weather) {
     data = {
         city: weather.data.name,
         description: weather.data.weather[0].description,
@@ -32,10 +31,15 @@ async function fetchWeather(city) {
     return data
 }
 
-// function fetchGeoLocation() {
-//     let location = navigator.geolocation.getCurrentPosition(success, error)
-//     console.log(location)
-// }
+async function fetchWeather(city) {
+    weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+    return convertData(weather)
+}
+
+async function geoLocationWeather(lat,long) {
+    weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`)
+    return convertData(weather)
+}
 
 router.get('/', async (req, res) => {
     weather_data = await fetchWeather("London")
@@ -52,10 +56,13 @@ router.post('/', async (req, res) => {
 })
 
 router.post('/geolocation', async (req, res) => {
-    // fetchGeoLocation()
-    city = "Denver"
-    weather_data = await fetchWeather(city)
+    console.log(req.body)
+    weather_data = await geoLocationWeather(req.body.lat,req.body.long)
     res.render('home', weather_data)
+})
+
+router.get('/geolocation', async (req, res) => {
+    res.redirect('/')
 })
 
 
