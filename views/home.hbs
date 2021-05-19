@@ -7,13 +7,14 @@
         <div class="card-body">
             <form class="row g-2 mb-3" action="/" method="POST">
                 <div class="col-10">
-                    <input type="text" class="form-control rounded-pill" placeholder="Search" aria-label="Search" name="searchCity">
+                    <input type="text" class="form-control rounded-pill" placeholder="Search" aria-label="Search" name="searchCity" required>
                 </div>
                 <div class="col-2">
                     <button class="btn btn-primary col-12 rounded-pill" type="submit"><i class="fas fa-search" id="searchBtn"></i></button>
                 </div>
             </form>
             <div class="content px-2">
+                <p class="fs-5 my-0 text-danger">{{err}}</p>
                 <p class="fs-2 mb-2">Weather in {{city}}</p>
                 <p class="fs-1 mb-0 lh-sm">{{temp}}°C</p>
                 <p class="fs-5 mb-3">Feels like {{feels_like}}°C</p>
@@ -26,12 +27,12 @@
                 <p class="lh-sm fs-5 mb-0">Maximum Temperature: {{temp_max}}°C</p>
                 <p class="lh-sm fs-5 mb-0">Minimum Temperature: {{temp_min}}°C</p>
             </div>
-            <div class="mt-3" action="/geolocation" method="POST">
+            <div class="mt-4">
                 <div class="col-12">
                     <button id="geo" class="btn btn-sm btn-primary col-12 rounded-pill" type="submit">Use My Location</button>
                 </div>
             </div>
         </div>
+        <p class="made fw-light m-0 col-12 text-center">myWeather by <a class="text-decoration-none" href="https://www.linkedin.com/in/ehvenga/">@ehvenga</a> </p>
     </div>
-    <p class="made fw-light m-2">myWeather by <a class="text-decoration-none" href="https://www.linkedin.com/in/ehvenga/">@ehvenga</a> </p>
 </div>

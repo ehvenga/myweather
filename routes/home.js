@@ -49,15 +49,22 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const city = req.body.searchCity
     console.log(city)
-    weather_data = await fetchWeather(city)
-    console.log(weather_data)
-    res.render('home', weather_data)
+
+    try {
+        weather_data = await fetchWeather(city)
+        console.log(weather_data)
+        res.render('home', weather_data)
+    } catch (error) {
+        weather_data = await fetchWeather("London")
+        weather_data.err="Please Enter a Valid City"
+        res.render('home', weather_data)
+    }
 
 })
 
 router.post('/geolocation', async (req, res) => {
     console.log(req.body)
-    weather_data = await geoLocationWeather(req.body.lat,req.body.long)
+    weather_data = await geoLocationWeather(req.body.lat, req.body.long)
     res.render('home', weather_data)
 })
 
