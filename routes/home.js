@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 const axios = require('axios')
@@ -25,20 +24,36 @@ function convertData(weather) {
         temp_min: weather.data.main.temp_min,
         temp_max: weather.data.main.temp_max,
         humidity: weather.data.main.humidity,
-        wind: weather.data.wind.speed        
+        wind: weather.data.wind.speed,
+        err: weather.err        
     }
     data.description = capitalize(data.description)
     return data
 }
 
 async function fetchWeather(city) {
-    weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
-    return convertData(weather)
+    try {
+        weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+        return convertData(weather)
+    } catch (error) {
+        try {
+            weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=${API_KEY}`)
+            weather.err = "Please Enter Valid City"
+            return convertData(weather)
+        } catch (error) {
+            weather.err = "Please Enter Valid City"
+            return weather
+        }
+    }
 }
 
 async function geoLocationWeather(lat,long) {
-    weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`)
-    return convertData(weather)
+    try {
+        weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`)
+        return convertData(weather)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 router.get('/', async (req, res) => {
@@ -49,13 +64,11 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
     const city = req.body.searchCity
     console.log(city)
-
     try {
         weather_data = await fetchWeather(city)
         console.log(weather_data)
         res.render('home', weather_data)
     } catch (error) {
-        weather_data = await fetchWeather("London")
         weather_data.err="Please Enter a Valid City"
         res.render('home', weather_data)
     }
