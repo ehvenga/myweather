@@ -88,3 +88,13 @@ img:hover {
 input:active {
     color: white;
 }
+
+@media only screen and (max-width: 768px) {
+    .btn, input {
+        height: 2.5rem;
+    }
+    .card {
+        padding-top: 1rem;
+    }
+  }
+
